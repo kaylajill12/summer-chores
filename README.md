@@ -1,52 +1,39 @@
-# 🧹 Saturday Chore Simulator
+# 🧹 Summer Chore Simulator
 
-Welcome to the Summer Chore Simulator! This project is a hands-on demonstration of asynchronous JavaScript programming using three different methods: **Callbacks**, **Promises**, and **Async/Await**. Each version simulates a series of Saturday chores that must be completed in order — unless someone gets too tired and falls asleep on the job. 😴
+Welcome to the Summer Chore Simulator! This project is a hands-on demonstration of asynchronous JavaScript programming using three different methods: **Callbacks**, **Promises**, and eventually **Async/Await**. The scenario involves a person working through a list of summer chores every Saturday — with the chance of getting too tired and falling asleep before completing them all. (Chore fatigue is real.)
 
----
+## 📋 The Chore List (in strict order)
 
-## ✅ Completed Version: Callbacks
+1. Mow the yard – 2000ms  
+2. Weed eat the edges – 1500ms  
+3. Trim the hedges – 1000ms  
+4. Collect fallen wood – 2500ms  
+5. Water the garden – 500ms  
 
-### `callbackVersion.js`
-
-This version uses classic callback functions and simulates the perils of **callback hell**. The simulation includes:
-
-- A strict chore routine:
-  1. Mow the yard (can’t fall asleep here — caffeine levels still maxed).
-  2. Weed eat the edges.
-  3. Trim the hedges.
-  4. Collect firewood.
-  5. Water the garden.
-
-- A random chance of the person falling asleep after each task (except the first), which prevents them from completing the rest of the chores.
-
-- A single entry point function, `doSummerChores(name)`, that kicks off the whole routine.
-
-### Example Output
-
-```bash
-Jill mowed the yard.
-Jill finished using the weed eater.
-Jill finished trimming the hedges.
-Jill fell asleep after trimming the hedges.
-```
-
-Or, if you're lucky:
-
-```bash
-Jill mowed the yard.
-Jill finished using the weed eater.
-Jill finished trimming the hedges.
-Jill finished collecting wood.
-Jill finished watering the garden.
-Jill finished all their chores!
-```
+If the person stays awake through all chores, they complete their list successfully. If they fall asleep mid-task, the program stops execution and logs an appropriate message.
 
 ---
 
-## 🛠 In Progress
+## ✅ Completed Versions
 
-- `promiseVersion.js` – Coming soon! We'll rewrite the routine using Promises to flatten out that pyramid of doom. ⛺
-- `asyncAwaitVersion.js` – Coming after Promises. Because chores are better when they await your attention politely. 🕰️
+### 1. `callbackVersion.js`
+- Demonstrates classic **callback-based** asynchronous flow.
+- Each chore function accepts a `name` and a `callback`.
+- Chores are executed in a nested callback chain — a.k.a. "callback hell."
+- Introduces potential sleepiness using `Math.random()` to simulate fatigue after each chore (except mowing, which is always completed first).
+
+### 2. `promiseVersion.js`
+- Refactors all chore functions to return **Promises** instead of using callbacks.
+- Uses `.then()` chaining to sequence chores in a clean, linear fashion.
+- A single `.catch()` handles any "I fell asleep" cases and logs the point of failure.
+- Greatly improves readability and flow control over the callback version.
+
+---
+
+## 🚧 Upcoming: `asyncAwaitVersion.js`
+- The final version will convert the Promise-based implementation into a fully async/await structure.
+- Will further simplify error handling and task sequencing using modern JavaScript syntax.
+- To be updated once implemented!
 
 ---
 
@@ -65,14 +52,16 @@ Run each version using Node.js in your terminal:
 
 ```bash
 node callbackVersion.js
+node promiseVersion.js
 ```
 
-Once the other versions are completed, you can try:
+Once the other version is completed, you can try:
 
 ```bash
-node promiseVersion.js
 node asyncAwaitVersion.js
 ```
+
+Each run randomly determines if the person gets tired mid-task, so results may vary!
 
 ---
 
@@ -80,7 +69,7 @@ node asyncAwaitVersion.js
 
 ```
 ├── callbackVersion.js       // Callback-based chore routine
-├── promiseVersion.js        // Promise-based version (coming soon)
+├── promiseVersion.js        // Promise-based version
 ├── asyncAwaitVersion.js     // Async/Await version (coming soon)
 └── README.md                // You're looking at it!
 ```
