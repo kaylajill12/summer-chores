@@ -62,3 +62,19 @@ function waterGarden(name) {
     }, 500);
   });
 }
+
+function doSummerChores(name) {
+  mowYard(name)
+    .then(weedEat)
+    .then(trimHedges)
+    .then(collectWood)
+    .then(waterGarden)
+    .then(() => {
+      console.log(`${name} finished all their chores!`);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+doSummerChores('Codey Webb');
